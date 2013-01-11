@@ -1,0 +1,19 @@
+#!/bin/bash
+#/usr/bin/powerbutton
+screenOffLockFile=/tmp/screen-off-lock
+ 
+if [ -f $screenOffLockFile ];
+then
+        rm $screenOffLockFile
+# not sure if required..        notify-send "Screen on." -i /usr/share/icons/gnome/48x48/devices/display.png
+
+else
+        touch $screenOffLockFile
+        sleep .5
+        while [ -f  $screenOffLockFile ]
+        do
+                xset dpms force off
+                sleep 10
+        done
+        xset dpms force on
+fi
