@@ -1,0 +1,9 @@
+#/usr/bin/wifibutton
+#!/bin/bash
+if [ $(nmcli nm wifi | grep "disabled" | wc -l) -eq 1 ] ; then
+    nmcli nm wifi on
+    notify-send -i network-wireless-full "Wireless enabled" "Your wireless adaptor has been enabled."
+else
+    nmcli nm wifi off
+    notify-send -i network-wireless-disconnected "Wireless disabled" "Your wireless adaptor has been disabled."
+fi
