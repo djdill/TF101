@@ -1,0 +1,33 @@
+Play Pause button::
+for mplayer (only)
+
+No rekey bind required for this one..
+
+mkfifo ~/.mplayer_fifovim ~/.mplayer/config
+vim ~/.mplayer/config
+
+add this line:
+input = file=/home/user/.mplayer_fifo
+
+create:
+/usr/bin/mplayerplaybutton
+
+#!/bin/bash
+echo pause > ~/.mplayer_fifo &>/dev/null
+
+chmod +x /usr/bin/mplayerplaybutton
+
+
+
+
+edit openbox config
+
+ <!-- Keybinding for pause play button-->
+    <keybind key="XF86AudioPlay">
+      <action name="Execute">
+        <command>sh /usr/bin/mplayerplaybutton</command>
+      </action>
+    </keybind>
+
+
+reconfigure openbox 
